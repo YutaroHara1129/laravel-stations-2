@@ -30,5 +30,6 @@
             <td>{{ $movie->updated_at }}</td>
         </tr>
         @endforeach
+    </table>
 </body>
 </html>
