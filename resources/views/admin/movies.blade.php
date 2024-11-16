@@ -22,7 +22,7 @@
         <tr>
             <td>{{ $movie->id }}</td>
             <td>{{ $movie->title }}</td>
-            <td><img src="{{ $movie->image_url }}" alt=""></td>
+            <td><img src="{{ $movie->image_url }}" alt="" style="max-width: 128px; max-height: 96px;"></td>
             <td>{{ $movie->published_year }}</td>
             <td>{{ $movie->is_showing ? '上映中' : '上映予定' }}</td>
             <td>{{ $movie->description }}</td>
