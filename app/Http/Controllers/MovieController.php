@@ -64,4 +64,15 @@ class MovieController extends Controller
         $this->movie->updateMovie($request, $id);
         return redirect()->route('movies.index');
     }
+
+    public function destroyMovie($id)
+    {
+        if ($this->movie::find($id) === null) {
+            # 404レスポンスを返す
+            abort(404);
+            return redirect()->route('movies.index');
+        }
+        $this->movie::destroy($id);
+        return redirect()->route('movies.index');
+    }
 }

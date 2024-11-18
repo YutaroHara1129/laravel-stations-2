@@ -28,6 +28,7 @@ Route::get('/getPractice', [PracticeController::class, 'getPractice']);
 Route::get('/movies', [MovieController::class, 'index']);
 
 Route::get('/admin/movies', [MovieController::class, 'getMovies'])->name('movies.index');
+Route::delete('/admin/movies/{id}/destroy', [MovieController::class, 'destroyMovie'])->name('movies.destroy');
 Route::get('/admin/movies/create', [MovieController::class, 'getCreateMovie']);
 Route::post('/admin/movies/store', [MovieController::class, 'storeMovie'])->name('movies.store');
 Route::get('/admin/movies/{id}/edit', [MovieController::class, 'getEditMovie'])->name('movies.edit');

@@ -38,4 +38,9 @@ class Movie extends Model
             'description' => $request->description,
         ]);
     }
+
+    public function deleteMovie($id)
+    {
+        return $this->find($id)->delete();
+    }
 }
