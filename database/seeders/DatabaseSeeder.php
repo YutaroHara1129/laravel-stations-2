@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
         Practice::truncate();
         Practice::factory(10)->create();
         Movie::truncate();
-        Movie::factory(3)->create();
+        Movie::factory(10)->create();
     }
 }
