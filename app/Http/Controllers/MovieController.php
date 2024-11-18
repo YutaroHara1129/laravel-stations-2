@@ -30,6 +30,13 @@ class MovieController extends Controller
         return view('admin.createMovie');
     }
 
+    public function getEditMovie($id)
+    {
+        $movie = $this->movie::find($id);
+
+        return view('admin.editMovie', ['movie' => $movie]);
+    }
+
     public function storeMovie(Request $request)
     {
         $request->validate([
@@ -41,6 +48,20 @@ class MovieController extends Controller
         ]);
 
         $this->movie->registerMovie($request);
+        return redirect()->route('movies.index');
+    }
+
+    public function updateMovie(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255|unique:movies,title,' . $id,
+            'image_url' => 'required|url',
+            'published_year' => 'required|integer',
+            'is_showing' => 'required|boolean',
+            'description' => 'required|string'
+        ]);
+
+        $this->movie->updateMovie($request, $id);
         return redirect()->route('movies.index');
     }
 }

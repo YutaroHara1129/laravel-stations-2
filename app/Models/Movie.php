@@ -27,4 +27,15 @@ class Movie extends Model
             'description' => $request->description,
         ]);
     }
+
+    public function updateMovie($request, $id)
+    {
+        return $this->find($id)->update([
+            'title' => $request->title,
+            'image_url' => $request->image_url,
+            'published_year' => $request->published_year,
+            'is_showing' => $request->is_showing,
+            'description' => $request->description,
+        ]);
+    }
 }
