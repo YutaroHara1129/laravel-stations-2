@@ -13,10 +13,27 @@ class MovieController extends Controller
         $this->movie = new Movie();
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $movies = $this->movie::all();
-        return view('movies', ['movies' => $movies]);
+        $keyword = $request->input('keyword');
+        $is_showing = $request->input('is_showing');
+        
+        $query = $this->movie::query();
+
+        if ($keyword !== null) {
+            $query->where(function($q) use ($keyword) {
+                $q->where('title', 'LIKE', "%{$keyword}%")
+                  ->orWhere('description', 'LIKE', "%{$keyword}%");
+            });
+        }
+
+        if ($is_showing !== null) {
+            $query->where('is_showing', $is_showing);
+        }
+        
+        $movies = $query->paginate(20);
+
+        return view('movies', compact('movies', 'keyword', 'is_showing'));
     }
 
     public function getMovies()
